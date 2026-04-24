@@ -1,25 +1,10 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  CheckCircle2,
-  ChefHat,
-  ChevronUp,
-  CreditCard,
-  PackageCheck,
-  Settings2,
-  Truck,
-  XCircle,
-} from "lucide-react";
-import {
-  manualAdvance,
-  manualPayment,
-  STATUS_FLOW,
-  STATUS_LABEL,
-  subscribe,
-  type Order,
-  type OrderStatus,
-} from "@/lib/orderStore";
+import { CheckCircle2, ChevronUp, CreditCard, Settings2, Truck, XCircle } from "lucide-react";
 import { toast } from "sonner";
+import { manualAdvance, subscribe } from "@/services/order/order.api";
+import { manualPayment } from "@/services/payment/payment.api";
+import { STATUS_FLOW, STATUS_LABEL, type Order, type OrderStatus } from "@/shared/order.types";
 
 export function DemoControlPanel({ orderId }: { orderId: string }) {
   const [order, setOrder] = useState<Order | undefined>();
@@ -62,9 +47,7 @@ export function DemoControlPanel({ orderId }: { orderId: string }) {
               </p>
             </div>
           </div>
-          <ChevronUp
-            className={`h-4 w-4 transition-transform ${open ? "" : "rotate-180"}`}
-          />
+          <ChevronUp className={`h-4 w-4 transition-transform ${open ? "" : "rotate-180"}`} />
         </button>
 
         <AnimatePresence initial={false}>
@@ -109,25 +92,11 @@ export function DemoControlPanel({ orderId }: { orderId: string }) {
                     Confirmed
                   </PanelButton>
                   <PanelButton
-                    icon={ChefHat}
-                    onClick={() => advance("PREPARING", "PREPARING")}
-                    disabled={!canAdvanceTo(currentIdx, "PREPARING")}
-                  >
-                    Preparing
-                  </PanelButton>
-                  <PanelButton
-                    icon={PackageCheck}
-                    onClick={() => advance("ASSIGNED", "ASSIGNED")}
-                    disabled={!canAdvanceTo(currentIdx, "ASSIGNED")}
-                  >
-                    Assigned
-                  </PanelButton>
-                  <PanelButton
                     icon={Truck}
-                    onClick={() => advance("OUT_FOR_DELIVERY", "OUT FOR DELIVERY")}
-                    disabled={!canAdvanceTo(currentIdx, "OUT_FOR_DELIVERY")}
+                    onClick={() => advance("DELIVERING", "DELIVERING")}
+                    disabled={!canAdvanceTo(currentIdx, "DELIVERING")}
                   >
-                    Out for Delivery
+                    Delivering
                   </PanelButton>
                   <PanelButton
                     icon={CheckCircle2}
@@ -156,7 +125,7 @@ export function DemoControlPanel({ orderId }: { orderId: string }) {
 
 function canAdvanceTo(currentIdx: number, target: OrderStatus) {
   const targetIdx = STATUS_FLOW.indexOf(target);
-  return targetIdx > currentIdx;
+  return targetIdx !== -1 && targetIdx > currentIdx;
 }
 
 function Section({
