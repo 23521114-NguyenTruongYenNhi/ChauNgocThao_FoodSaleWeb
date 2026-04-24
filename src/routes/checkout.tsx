@@ -94,7 +94,7 @@ function CheckoutPage() {
         <main className="mx-auto max-w-6xl px-5 py-10">
             <header className="mb-8">
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Checkout</p>
-                <h1 className="mt-1 text-4xl font-extrabold">Almost there 🚀</h1>
+                <h1 className="mt-1 text-4xl font-extrabold">Almost there</h1>
             </header>
 
             <div className="grid gap-6 lg:grid-cols-[1fr_380px]">
