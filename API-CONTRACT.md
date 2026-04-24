@@ -6,10 +6,10 @@ Recommended service contract for the frontend and backend teams.
 
 ## Service Summary
 
-| Service | Base URL | Responsibility |
-| --- | --- | --- |
-| Order Service | `http://localhost:8081` | Create and manage orders |
-| Payment Service | `http://localhost:8082` | Process payments |
+| Service          | Base URL                | Responsibility            |
+| ---------------- | ----------------------- | ------------------------- |
+| Order Service    | `http://localhost:8081` | Create and manage orders  |
+| Payment Service  | `http://localhost:8082` | Process payments          |
 | Delivery Service | `http://localhost:8083` | Manage delivery lifecycle |
 
 ---
@@ -54,11 +54,11 @@ http://localhost:8081
 
 ### Endpoints
 
-| Method | Path | Purpose |
-| --- | --- | --- |
-| `POST` | `/orders` | Create a new order |
-| `GET` | `/orders` | List all orders |
-| `GET` | `/orders/:orderId` | Get one order |
+| Method  | Path                      | Purpose             |
+| ------- | ------------------------- | ------------------- |
+| `POST`  | `/orders`                 | Create a new order  |
+| `GET`   | `/orders`                 | List all orders     |
+| `GET`   | `/orders/:orderId`        | Get one order       |
 | `PATCH` | `/orders/:orderId/status` | Update order status |
 
 ### `POST /orders`
@@ -213,10 +213,10 @@ http://localhost:8082
 
 ### Endpoints
 
-| Method | Path | Purpose |
-| --- | --- | --- |
-| `POST` | `/payments` | Process payment |
-| `GET` | `/payments/:orderId` | Get payment by order ID |
+| Method | Path                 | Purpose                 |
+| ------ | -------------------- | ----------------------- |
+| `POST` | `/payments`          | Process payment         |
+| `GET`  | `/payments/:orderId` | Get payment by order ID |
 
 ### `POST /payments`
 
@@ -265,10 +265,10 @@ http://localhost:8083
 
 ### Endpoints
 
-| Method | Path | Purpose |
-| --- | --- | --- |
-| `POST` | `/deliveries` | Create delivery record |
-| `GET` | `/deliveries/:orderId` | Get delivery by order ID |
+| Method  | Path                             | Purpose                    |
+| ------- | -------------------------------- | -------------------------- |
+| `POST`  | `/deliveries`                    | Create delivery record     |
+| `GET`   | `/deliveries/:orderId`           | Get delivery by order ID   |
 | `PATCH` | `/deliveries/:orderId/delivered` | Mark delivery as completed |
 
 ### `POST /deliveries`

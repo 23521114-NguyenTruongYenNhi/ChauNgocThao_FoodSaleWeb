@@ -25,11 +25,10 @@ export const CATEGORIES: { id: Category; label: string; emoji: string }[] = [
 ];
 
 export const MENU: MenuItem[] = [
-  // --- 1. SALT-BAKED CHICKEN (GÀ Ủ MUỐI) ---
   {
     id: "ga-1",
     name: "Whole Salt-Baked Ri Chicken (Grade 1)",
-    description: "Premium whole chicken, firm meat and crispy skin.",
+    description: "Premium whole chicken with firm meat and crispy skin.",
     price: 290,
     image: "/menu/ga-1.jpg",
     category: "salt-baked-chicken",
@@ -47,17 +46,15 @@ export const MENU: MenuItem[] = [
   {
     id: "ga-3",
     name: "Half Salt-Baked Ri Chicken",
-    description: "A perfect portion (half) of our signature chicken.",
+    description: "A perfect half portion of our signature chicken.",
     price: 160,
     image: "/menu/ga-3.jpg",
     category: "salt-baked-chicken",
   },
-
-  // --- 2. PICKLED & MIXED SALAD (MÓN NGÂM & TRỘN) ---
   {
     id: "ngam-1s",
     name: "Pickled Beef Tendon (Small)",
-    description: "Crunchy beef tendon in sweet & sour sauce.",
+    description: "Crunchy beef tendon in sweet and sour sauce.",
     price: 125,
     image: "/menu/ngam-1s.jpg",
     category: "pickled-mixed",
@@ -65,7 +62,7 @@ export const MENU: MenuItem[] = [
   {
     id: "ngam-1l",
     name: "Pickled Beef Tendon (Large)",
-    description: "Crunchy beef tendon in sweet & sour sauce.",
+    description: "Crunchy beef tendon in sweet and sour sauce.",
     price: 185,
     image: "/menu/ngam-1l.jpg",
     category: "pickled-mixed",
@@ -73,7 +70,7 @@ export const MENU: MenuItem[] = [
   {
     id: "ngam-2",
     name: "Thai-Style Boneless Chicken Feet",
-    description: "Boneless feet in spicy Thai-style sauce.",
+    description: "Boneless chicken feet in spicy Thai-style sauce.",
     price: 155,
     image: "/menu/ngam-2.jpg",
     category: "pickled-mixed",
@@ -107,17 +104,15 @@ export const MENU: MenuItem[] = [
   {
     id: "ngam-8",
     name: "Mixed Tre Ingredient Combo",
-    description: "Full set of ingredients to mix your own Tre at home.",
+    description: "Full ingredient set to mix your own Tre at home.",
     price: 300,
     image: "/menu/ngam-7.jpg",
     category: "pickled-mixed",
   },
-
-  // --- 3. DRIED SNACKS & SWEETS (ĂN VẶT ĐỒ KHÔ) ---
   {
     id: "ngam-7",
     name: "Rice Paper with Dipping Sauce",
-    description: "Includes 5 quail eggs and signature sauce.",
+    description: "Includes five quail eggs and signature sauce.",
     price: 25,
     image: "/menu/kho-a.jpg",
     category: "dried-snacks",
@@ -133,7 +128,7 @@ export const MENU: MenuItem[] = [
   {
     id: "kho-2a",
     name: "Chili Salt Dried Mango",
-    description: "Dried mango with a spicy chili salt kick.",
+    description: "Dried mango with a spicy chili-salt kick.",
     price: 85,
     image: "/menu/kho-2.jpg",
     category: "dried-snacks",
@@ -174,7 +169,7 @@ export const MENU: MenuItem[] = [
   {
     id: "kho-7",
     name: "Shredded Chicken with Lime Leaves",
-    description: "Flavorful chicken jerky (200g pack).",
+    description: "Flavorful chicken jerky in a 200g pack.",
     price: 95,
     image: "/menu/kho-7.jpg",
     category: "dried-snacks",
@@ -182,7 +177,7 @@ export const MENU: MenuItem[] = [
   {
     id: "kho-8",
     name: "Premium Fish Sauce Pork Floss",
-    description: "Salty and savory pork floss (200g).",
+    description: "Salty and savory pork floss in a 200g pack.",
     price: 125,
     image: "/menu/kho-8.jpg",
     category: "dried-snacks",
@@ -190,7 +185,7 @@ export const MENU: MenuItem[] = [
   {
     id: "kho-9",
     name: "Thick-Cut Soft-Dried Coconut",
-    description: "Delicious dried coconut strips (500g).",
+    description: "Delicious dried coconut strips in a 500g pack.",
     price: 155,
     image: "/menu/kho-9.jpg",
     category: "dried-snacks",
@@ -198,13 +193,11 @@ export const MENU: MenuItem[] = [
   {
     id: "kho-10",
     name: "Dew-Wetted Rice Paper Combo",
-    description: "500g Rice Paper + 250g Shrimp Salt & Shallots.",
+    description: "500g rice paper with shrimp salt and shallots.",
     price: 135,
     image: "/menu/kho-10.jpg",
     category: "dried-snacks",
   },
-
-  // --- 4. SAUCES & TOPPINGS (GIA VỊ & TOPPING) ---
   {
     id: "gia-vi-2",
     name: "Steamed Fish Paste",
@@ -240,7 +233,7 @@ export const MENU: MenuItem[] = [
   },
   {
     id: "top-3",
-    name: "Pork Sausage Stick (Cha the)",
+    name: "Pork Sausage Stick (Cha The)",
     description: "Traditional Vietnamese pork sausage.",
     price: 9,
     image: "/menu/top-3.jpg",
@@ -272,25 +265,23 @@ export const MENU: MenuItem[] = [
   },
   {
     id: "top-7",
-    name: "Extra Fruits (Mango/Ambarella)",
+    name: "Extra Fruits (Mango / Ambarella)",
     description: "Fresh seasonal fruit toppings.",
     price: 7,
     image: "https://aicdn.picsart.com/fd3b6585-b9b7-40f1-a752-7850642d1a22.jpg",
     category: "sauces-toppings",
   },
-
-  // --- 5. BEVERAGES (NƯỚC UỐNG) ---
   {
     id: "nuoc-1",
     name: "Six-Flavor Herbal Coolant",
-    description: "Refreshing traditional herbal tea (Sam Lanh).",
+    description: "Refreshing traditional herbal tea.",
     price: 15,
     image: "/menu/nuoc-1.jpg",
     category: "beverages",
   },
   {
     id: "nuoc-2",
-    name: "Soft Drink (Pepsi/7Up/Sting)",
+    name: "Soft Drink (Pepsi / 7Up / Sting)",
     description: "Chilled canned beverages.",
     price: 15,
     image: "/menu/nuoc-2.jpg",

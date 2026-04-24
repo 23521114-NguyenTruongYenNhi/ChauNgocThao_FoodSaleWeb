@@ -22,7 +22,7 @@ import type { PaymentMethod } from "@/shared/order.types";
 export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
-      { title: "Checkout â€” ChÃ¢u Ngá»c Tháº£o" },
+      { title: "Checkout - Chau Ngoc Thao" },
       { name: "description", content: "Review your cart, choose payment, and place your order." },
     ],
   }),
@@ -35,8 +35,8 @@ const METHODS: {
   icon: React.ComponentType<{ className?: string }>;
   sub: string;
 }[] = [
-  { id: "card", label: "Credit Card", icon: CreditCard, sub: "Visa Â· Master Â· JCB" },
-  { id: "ewallet", label: "E-Wallet", icon: Smartphone, sub: "MoMo Â· ZaloPay Â· ApplePay" },
+  { id: "card", label: "Credit Card", icon: CreditCard, sub: "Visa / Master / JCB" },
+  { id: "ewallet", label: "E-Wallet", icon: Smartphone, sub: "MoMo / ZaloPay / ApplePay" },
   { id: "cod", label: "Cash on Delivery", icon: Wallet, sub: "Pay courier on arrival" },
 ];
 
@@ -56,7 +56,7 @@ function CheckoutPage() {
       <main className="mx-auto max-w-3xl px-5 py-20 text-center">
         <ShoppingBag className="mx-auto h-12 w-12 text-muted-foreground" />
         <h1 className="mt-4 text-3xl font-extrabold">Your cart is empty</h1>
-        <p className="mt-2 text-muted-foreground">Add some bold bites before checking out.</p>
+        <p className="mt-2 text-muted-foreground">Add some items before checking out.</p>
         <button
           onClick={() => navigate({ to: "/menu" })}
           className="mt-6 rounded-2xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-glow"
@@ -72,6 +72,7 @@ function CheckoutPage() {
       toast.error("Please fill in delivery details first.");
       return;
     }
+
     setProcessing(true);
     const order = await createOrder({
       customer: { name, phone, address },
@@ -84,6 +85,9 @@ function CheckoutPage() {
 
     if (outcome === "SUCCESS") {
       await triggerDelivery(order.id);
+      toast.success("Payment successful. Preparing your order.");
+    } else {
+      toast.error("Payment failed. Order cancelled.");
     }
 
     navigate({ to: "/order/$orderId", params: { orderId: order.id } });
@@ -93,8 +97,8 @@ function CheckoutPage() {
     return (
       <main className="mx-auto mt-32 flex max-w-md flex-col items-center gap-4 px-5 text-center">
         <Loader2 className="h-10 w-10 animate-spin text-primary" />
-        <p className="text-lg font-bold">Contacting Payment Serviceâ€¦</p>
-        <p className="text-sm text-muted-foreground">Hang tight, we're confirming your order.</p>
+        <p className="text-lg font-bold">Contacting Payment Service...</p>
+        <p className="text-sm text-muted-foreground">Hang tight, we are confirming your order.</p>
       </main>
     );
   }
@@ -103,7 +107,7 @@ function CheckoutPage() {
     <main className="mx-auto max-w-6xl px-5 py-10">
       <header className="mb-8">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Checkout</p>
-        <h1 className="mt-1 text-4xl font-extrabold">Almost there ðŸš€</h1>
+        <h1 className="mt-1 text-4xl font-extrabold">Almost there</h1>
       </header>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_380px]">
@@ -121,7 +125,7 @@ function CheckoutPage() {
                   label="Delivery address"
                   value={address}
                   onChange={setAddress}
-                  placeholder="123 LÃª Lá»£i, Q.1, HCMC"
+                  placeholder="123 Le Loi, Q.1, HCMC"
                 />
               </div>
             </div>
@@ -135,7 +139,7 @@ function CheckoutPage() {
                   <button
                     key={m.id}
                     onClick={() => setMethod(m.id)}
-                    className={`flex flex-col items-start gap-2 rounded-xl border-2 p-4 text-left transition ${
+                    className={`flex min-h-40 flex-col items-start gap-2 rounded-xl border-2 p-4 text-left transition ${
                       active
                         ? "border-primary bg-primary/10"
                         : "border-border bg-background hover:border-primary/40"
@@ -157,18 +161,18 @@ function CheckoutPage() {
             <div className="grid gap-3 sm:grid-cols-2">
               <button
                 onClick={() => handlePayment("SUCCESS")}
-                className="group flex flex-col items-start gap-2 rounded-xl border-2 border-success/40 bg-success/10 p-5 text-left transition hover:border-success"
+                className="group flex min-h-40 flex-col items-start gap-2 rounded-xl border-2 border-success/40 bg-success/10 p-5 text-left transition hover:border-success"
               >
                 <CheckCircle2 className="h-6 w-6 text-success" />
-                <p className="font-bold">Place Order Â· Success</p>
-                <p className="text-xs text-muted-foreground">Triggers Order â†’ Delivery flow.</p>
+                <p className="font-bold">Place Order - Success</p>
+                <p className="text-xs text-muted-foreground">Triggers Order to Delivery flow.</p>
               </button>
               <button
                 onClick={() => handlePayment("FAILED")}
-                className="group flex flex-col items-start gap-2 rounded-xl border-2 border-destructive/40 bg-destructive/10 p-5 text-left transition hover:border-destructive"
+                className="group flex min-h-40 flex-col items-start gap-2 rounded-xl border-2 border-destructive/40 bg-destructive/10 p-5 text-left transition hover:border-destructive"
               >
                 <XCircle className="h-6 w-6 text-destructive" />
-                <p className="font-bold">Place Order Â· Failure</p>
+                <p className="font-bold">Place Order - Failure</p>
                 <p className="text-xs text-muted-foreground">Cancels order. No delivery.</p>
               </button>
             </div>

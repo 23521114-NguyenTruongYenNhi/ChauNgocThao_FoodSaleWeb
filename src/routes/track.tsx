@@ -7,7 +7,7 @@ import { type Order, STATUS_LABEL } from "@/shared/order.types";
 export const Route = createFileRoute("/track")({
   head: () => ({
     meta: [
-      { title: "Track My Order — Châu Ngọc Thảo" },
+      { title: "Track My Order - Chau Ngoc Thao" },
       { name: "description", content: "Find your order and follow its journey." },
     ],
   }),
@@ -38,8 +38,9 @@ function TrackPage() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (orderId.trim())
+          if (orderId.trim()) {
             navigate({ to: "/order/$orderId", params: { orderId: orderId.trim() } });
+          }
         }}
         className="mt-8 flex gap-2"
       >
@@ -72,7 +73,7 @@ function TrackPage() {
                   <div>
                     <p className="font-semibold">{o.id}</p>
                     <p className="text-xs text-muted-foreground">
-                      {o.lines.reduce((n, l) => n + l.qty, 0)} items · ${o.total.toFixed(2)}
+                      {o.lines.reduce((n, l) => n + l.qty, 0)} items - {o.total}k
                     </p>
                   </div>
                   <span className="rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold text-foreground">

@@ -8,13 +8,13 @@ This repository is structured as a **microservice-ready frontend**. It can run i
 
 ## Executive Summary
 
-| Area | Description |
-| --- | --- |
-| Frontend stack | React, TypeScript, Vite, TanStack Router |
-| Service domains | Order, Payment, Delivery |
-| Current integration mode | Mock and Live |
-| Backend strategy | Frontend talks to domain API layers, not databases |
-| Migration path | Replace mock-backed API calls with real service endpoints |
+| Area                     | Description                                               |
+| ------------------------ | --------------------------------------------------------- |
+| Frontend stack           | React, TypeScript, Vite, TanStack Router                  |
+| Service domains          | Order, Payment, Delivery                                  |
+| Current integration mode | Mock and Live                                             |
+| Backend strategy         | Frontend talks to domain API layers, not databases        |
+| Migration path           | Replace mock-backed API calls with real service endpoints |
 
 ---
 
@@ -48,12 +48,12 @@ flowchart LR
 
 ### Design Principles
 
-| Principle | Implementation |
-| --- | --- |
-| Clear domain boundaries | `order`, `payment`, and `delivery` are split into separate service folders |
-| Stable UI layer | Pages and components consume API modules instead of direct business logic |
-| Backend-independent development | Mock implementations allow end-to-end UI work before backend exists |
-| Low-friction backend integration | Switching to live services is controlled by environment variables |
+| Principle                        | Implementation                                                             |
+| -------------------------------- | -------------------------------------------------------------------------- |
+| Clear domain boundaries          | `order`, `payment`, and `delivery` are split into separate service folders |
+| Stable UI layer                  | Pages and components consume API modules instead of direct business logic  |
+| Backend-independent development  | Mock implementations allow end-to-end UI work before backend exists        |
+| Low-friction backend integration | Switching to live services is controlled by environment variables          |
 
 ---
 
@@ -122,9 +122,9 @@ src/
 
 ### Order
 
-| File | Role |
-| --- | --- |
-| [order.api.ts](/D:/ChauNgocThao-Web_FE/src/services/order/order.api.ts) | Public API entry for the Order domain |
+| File                                                                      | Role                                  |
+| ------------------------------------------------------------------------- | ------------------------------------- |
+| [order.api.ts](/D:/ChauNgocThao-Web_FE/src/services/order/order.api.ts)   | Public API entry for the Order domain |
 | [order.mock.ts](/D:/ChauNgocThao-Web_FE/src/services/order/order.mock.ts) | Mock implementation used in mock mode |
 
 Primary responsibilities:
@@ -136,10 +136,10 @@ Primary responsibilities:
 
 ### Payment
 
-| File | Role |
-| --- | --- |
-| [payment.api.ts](/D:/ChauNgocThao-Web_FE/src/services/payment/payment.api.ts) | Public API entry for the Payment domain |
-| [payment.mock.ts](/D:/ChauNgocThao-Web_FE/src/services/payment/payment.mock.ts) | Mock implementation used in mock mode |
+| File                                                                            | Role                                    |
+| ------------------------------------------------------------------------------- | --------------------------------------- |
+| [payment.api.ts](/D:/ChauNgocThao-Web_FE/src/services/payment/payment.api.ts)   | Public API entry for the Payment domain |
+| [payment.mock.ts](/D:/ChauNgocThao-Web_FE/src/services/payment/payment.mock.ts) | Mock implementation used in mock mode   |
 
 Primary responsibilities:
 
@@ -149,10 +149,10 @@ Primary responsibilities:
 
 ### Delivery
 
-| File | Role |
-| --- | --- |
-| [delivery.api.ts](/D:/ChauNgocThao-Web_FE/src/services/delivery/delivery.api.ts) | Public API entry for the Delivery domain |
-| [delivery.mock.ts](/D:/ChauNgocThao-Web_FE/src/services/delivery/delivery.mock.ts) | Mock implementation used in mock mode |
+| File                                                                               | Role                                     |
+| ---------------------------------------------------------------------------------- | ---------------------------------------- |
+| [delivery.api.ts](/D:/ChauNgocThao-Web_FE/src/services/delivery/delivery.api.ts)   | Public API entry for the Delivery domain |
+| [delivery.mock.ts](/D:/ChauNgocThao-Web_FE/src/services/delivery/delivery.mock.ts) | Mock implementation used in mock mode    |
 
 Primary responsibilities:
 
@@ -164,10 +164,10 @@ Primary responsibilities:
 
 ## Runtime Modes
 
-| Mode | Purpose | Data source |
-| --- | --- | --- |
-| `mock` | UI development and demo without backend | Local mock implementations |
-| `live` | Real backend integration | HTTP calls to microservices |
+| Mode   | Purpose                                 | Data source                 |
+| ------ | --------------------------------------- | --------------------------- |
+| `mock` | UI development and demo without backend | Local mock implementations  |
+| `live` | Real backend integration                | HTTP calls to microservices |
 
 Configuration is controlled by [config.ts](/D:/ChauNgocThao-Web_FE/src/shared/config.ts).
 
@@ -188,11 +188,11 @@ VITE_DELIVERY_SERVICE_URL=http://localhost:8083
 
 ### Variables
 
-| Variable | Meaning |
-| --- | --- |
-| `VITE_API_MODE` | `mock` or `live` |
-| `VITE_ORDER_SERVICE_URL` | Base URL of Order Service |
-| `VITE_PAYMENT_SERVICE_URL` | Base URL of Payment Service |
+| Variable                    | Meaning                      |
+| --------------------------- | ---------------------------- |
+| `VITE_API_MODE`             | `mock` or `live`             |
+| `VITE_ORDER_SERVICE_URL`    | Base URL of Order Service    |
+| `VITE_PAYMENT_SERVICE_URL`  | Base URL of Payment Service  |
 | `VITE_DELIVERY_SERVICE_URL` | Base URL of Delivery Service |
 
 ---
@@ -201,10 +201,10 @@ VITE_DELIVERY_SERVICE_URL=http://localhost:8083
 
 The frontend is already aligned with the following service boundaries:
 
-| Service | Base URL | Key endpoints |
-| --- | --- | --- |
-| Order | `http://localhost:8081` | `POST /orders`, `GET /orders`, `GET /orders/:orderId`, `PATCH /orders/:orderId/status` |
-| Payment | `http://localhost:8082` | `POST /payments`, `GET /payments/:orderId` |
+| Service  | Base URL                | Key endpoints                                                                          |
+| -------- | ----------------------- | -------------------------------------------------------------------------------------- |
+| Order    | `http://localhost:8081` | `POST /orders`, `GET /orders`, `GET /orders/:orderId`, `PATCH /orders/:orderId/status` |
+| Payment  | `http://localhost:8082` | `POST /payments`, `GET /payments/:orderId`                                             |
 | Delivery | `http://localhost:8083` | `POST /deliveries`, `GET /deliveries/:orderId`, `PATCH /deliveries/:orderId/delivered` |
 
 Detailed request and response examples are documented in [API-CONTRACT.md](/D:/ChauNgocThao-Web_FE/API-CONTRACT.md).
@@ -245,13 +245,13 @@ FAILED
 
 ## Route Map
 
-| Route | Responsibility |
-| --- | --- |
-| `/` | Landing page, featured products, primary navigation |
-| `/menu` | Product browsing and add-to-cart flow |
-| `/checkout` | Customer details, payment selection, order creation |
-| `/track` | Order lookup and recent order access |
-| `/order/$orderId` | Detailed order tracking and service activity log |
+| Route             | Responsibility                                      |
+| ----------------- | --------------------------------------------------- |
+| `/`               | Landing page, featured products, primary navigation |
+| `/menu`           | Product browsing and add-to-cart flow               |
+| `/checkout`       | Customer details, payment selection, order creation |
+| `/track`          | Order lookup and recent order access                |
+| `/order/$orderId` | Detailed order tracking and service activity log    |
 
 ---
 
@@ -313,14 +313,14 @@ This keeps the route layer and component layer stable.
 
 ## Current Project Status
 
-| Checkpoint | Status |
-| --- | --- |
-| Domain separation | Complete |
-| Mock mode | Complete |
-| Live mode wiring | Complete |
-| Backend-ready API layer | Complete |
-| Production build | Passing |
-| Lint | Passing with one minor Fast Refresh warning in [router.tsx](/D:/ChauNgocThao-Web_FE/src/router.tsx) |
+| Checkpoint              | Status                                                                                              |
+| ----------------------- | --------------------------------------------------------------------------------------------------- |
+| Domain separation       | Complete                                                                                            |
+| Mock mode               | Complete                                                                                            |
+| Live mode wiring        | Complete                                                                                            |
+| Backend-ready API layer | Complete                                                                                            |
+| Production build        | Passing                                                                                             |
+| Lint                    | Passing with one minor Fast Refresh warning in [router.tsx](/D:/ChauNgocThao-Web_FE/src/router.tsx) |
 
 ---
 
