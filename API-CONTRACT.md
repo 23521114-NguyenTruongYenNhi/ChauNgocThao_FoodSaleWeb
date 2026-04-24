@@ -1,16 +1,20 @@
 # API Contract
 
-This document defines the recommended service contract for the frontend and backend teams.
+Recommended service contract for the frontend and backend teams.
+
+---
 
 ## Service Summary
 
 | Service | Base URL | Responsibility |
 | --- | --- | --- |
 | Order Service | `http://localhost:8081` | Create and manage orders |
-| Payment Service | `http://localhost:8082` | Handle payment processing |
-| Delivery Service | `http://localhost:8083` | Handle shipping and delivery updates |
+| Payment Service | `http://localhost:8082` | Process payments |
+| Delivery Service | `http://localhost:8083` | Manage delivery lifecycle |
 
-## Shared Domain Types
+---
+
+## Shared Enums
 
 ### Order Status
 
@@ -38,7 +42,9 @@ SUCCESS
 FAILED
 ```
 
-## 1. Order Service
+---
+
+## Order Service
 
 Base URL:
 
@@ -46,11 +52,18 @@ Base URL:
 http://localhost:8081
 ```
 
+### Endpoints
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| `POST` | `/orders` | Create a new order |
+| `GET` | `/orders` | List all orders |
+| `GET` | `/orders/:orderId` | Get one order |
+| `PATCH` | `/orders/:orderId/status` | Update order status |
+
 ### `POST /orders`
 
-Create a new order.
-
-Request body:
+Request:
 
 ```json
 {
@@ -74,7 +87,7 @@ Request body:
 }
 ```
 
-Success response:
+Response:
 
 ```json
 {
@@ -117,9 +130,7 @@ Success response:
 
 ### `GET /orders`
 
-Return a list of orders.
-
-Success response:
+Response:
 
 ```json
 [
@@ -142,9 +153,7 @@ Success response:
 
 ### `GET /orders/:orderId`
 
-Return one order by ID.
-
-Success response:
+Response:
 
 ```json
 {
@@ -176,9 +185,7 @@ Success response:
 
 ### `PATCH /orders/:orderId/status`
 
-Update order status.
-
-Request body:
+Request:
 
 ```json
 {
@@ -186,7 +193,7 @@ Request body:
 }
 ```
 
-Success response:
+Response:
 
 ```json
 {
@@ -194,7 +201,9 @@ Success response:
 }
 ```
 
-## 2. Payment Service
+---
+
+## Payment Service
 
 Base URL:
 
@@ -202,11 +211,16 @@ Base URL:
 http://localhost:8082
 ```
 
+### Endpoints
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| `POST` | `/payments` | Process payment |
+| `GET` | `/payments/:orderId` | Get payment by order ID |
+
 ### `POST /payments`
 
-Process payment for an order.
-
-Request body:
+Request:
 
 ```json
 {
@@ -215,7 +229,7 @@ Request body:
 }
 ```
 
-Success response:
+Response:
 
 ```json
 {
@@ -228,9 +242,7 @@ Success response:
 
 ### `GET /payments/:orderId`
 
-Return payment information by order ID.
-
-Success response:
+Response:
 
 ```json
 {
@@ -241,7 +253,9 @@ Success response:
 }
 ```
 
-## 3. Delivery Service
+---
+
+## Delivery Service
 
 Base URL:
 
@@ -249,11 +263,17 @@ Base URL:
 http://localhost:8083
 ```
 
+### Endpoints
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| `POST` | `/deliveries` | Create delivery record |
+| `GET` | `/deliveries/:orderId` | Get delivery by order ID |
+| `PATCH` | `/deliveries/:orderId/delivered` | Mark delivery as completed |
+
 ### `POST /deliveries`
 
-Create a delivery record for an order.
-
-Request body:
+Request:
 
 ```json
 {
@@ -261,7 +281,7 @@ Request body:
 }
 ```
 
-Success response:
+Response:
 
 ```json
 {
@@ -275,9 +295,7 @@ Success response:
 
 ### `GET /deliveries/:orderId`
 
-Return delivery information by order ID.
-
-Success response:
+Response:
 
 ```json
 {
@@ -291,9 +309,7 @@ Success response:
 
 ### `PATCH /deliveries/:orderId/delivered`
 
-Mark a delivery as completed.
-
-Success response:
+Response:
 
 ```json
 {
@@ -301,21 +317,19 @@ Success response:
 }
 ```
 
-## Integration Notes For Backend Team
+---
+
+## Integration Notes
+
+### For backend
 
 - Frontend mode is controlled by `VITE_API_MODE`.
-- In `mock` mode, the frontend uses local mock implementations.
-- In `live` mode, the frontend calls real services through:
+- In `mock` mode, the frontend uses local mock modules.
+- In `live` mode, the frontend calls:
   - [order.api.ts](/D:/ChauNgocThao-Web_FE/src/services/order/order.api.ts)
   - [payment.api.ts](/D:/ChauNgocThao-Web_FE/src/services/payment/payment.api.ts)
   - [delivery.api.ts](/D:/ChauNgocThao-Web_FE/src/services/delivery/delivery.api.ts)
 
-## Integration Notes For Frontend Team
+### For frontend
 
-If the backend API differs from this contract, only update the API layer:
-
-- [order.api.ts](/D:/ChauNgocThao-Web_FE/src/services/order/order.api.ts)
-- [payment.api.ts](/D:/ChauNgocThao-Web_FE/src/services/payment/payment.api.ts)
-- [delivery.api.ts](/D:/ChauNgocThao-Web_FE/src/services/delivery/delivery.api.ts)
-
-Routes and components should remain largely unchanged.
+If backend endpoints differ from this contract, update only the API layer. Routes and components should remain unchanged.
